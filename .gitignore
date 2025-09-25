@@ -38,3 +38,7 @@ out/
 
 ### Kotlin ###
 .kotlin
+
+### Generated files ###
+**/src/main/**/onboarding
+**/src/main/**/transactions
