@@ -31,10 +31,6 @@ spotless {
 	}
 }
 
-tasks.test {
-	useJUnitPlatform()
-}
-
 publishing {
 	publications {
 		create<MavenPublication>("mavenJava") {
@@ -56,7 +52,6 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.17.1")
 	implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.17.1")
 	implementation("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
-	testImplementation("io.kotlintest:kotlintest-runner-junit5:3.4.2")
 }
 
 signing {
