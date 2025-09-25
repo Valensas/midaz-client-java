@@ -155,6 +155,6 @@ tasks.register("generateOpenApi") {
 }
 
 tasks.register("generateAndPublishApi") {
-	dependsOn("generateOpenApi", "publishToMavenLocal")
+	dependsOn("generateOpenApi", "publishToCentralPortal")
 	tasks.findByName("publishToCentralPortal")?.mustRunAfter("generateOpenApi")
 }
