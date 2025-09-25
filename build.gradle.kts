@@ -3,7 +3,6 @@ version = "1.0.0"
 
 val kotlinVersion = "1.9.23"
 val springBootVersion = "3.2.5"
-val spotlessVersion = "6.25.0"
 
 plugins {
 	kotlin("jvm") version "1.9.23"
@@ -157,6 +156,5 @@ tasks.register("generateOpenApi") {
 
 tasks.register("generateAndPublishApi") {
 	dependsOn("generateOpenApi", "publishToMavenLocal")
-	tasks.findByName("publishToMavenLocal")?.mustRunAfter("generateOpenApi")
-	tasks.findByName("publishToCentralPortal")?.mustRunAfter("publishToMavenLocal")
+	tasks.findByName("publishToCentralPortal")?.mustRunAfter("generateOpenApi")
 }
