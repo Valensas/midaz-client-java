@@ -1,5 +1,4 @@
 group = "com.valensas.midaz"
-version = "1.0.0"
 
 val kotlinVersion = "1.9.23"
 val springBootVersion = "3.2.5"
