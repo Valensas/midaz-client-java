@@ -1980,7 +1980,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/github_com_LerianStudio_midaz_v3_components_transaction_internal_adapters_postgres_transaction.CreateTransactionSwaggerModel'
+              $ref: '#/components/schemas/CreateTransactionSwaggerModel'
         description: Transaction Input
         required: true
       responses:
@@ -3747,7 +3747,7 @@ components:
           maxLength: 50
           type: string
       type: object
-    github_com_LerianStudio_midaz_v3_components_transaction_internal_adapters_postgres_transaction.CreateTransactionSwaggerModel:
+    CreateTransactionSwaggerModel:
       description: Schema for creating transaction with the complete Send operation
         structure defined inline
       properties:
@@ -3785,7 +3785,7 @@ components:
           example: true
           type: boolean
         send:
-          $ref: '#/components/schemas/github_com_LerianStudio_midaz_v3_components_transaction_internal_adapters_postgres_transaction_CreateTransactionSwaggerModel_send'
+          $ref: '#/components/schemas/CreateTransactionSwaggerModel_send'
       type: object
     mmodel.AccountRule:
       type: object
@@ -4676,7 +4676,7 @@ components:
             required: true
           type: string
       type: object
-    ? github_com_LerianStudio_midaz_v3_components_transaction_internal_adapters_postgres_transaction_CreateTransactionSwaggerModel_send_source_from
+    ? CreateTransactionSwaggerModel_send_source_from
     : properties:
         accountAlias:
           description: |-
@@ -4704,7 +4704,7 @@ components:
             example: {"operation": "funding", "type": "external"}
           type: object
       type: object
-    ? github_com_LerianStudio_midaz_v3_components_transaction_internal_adapters_postgres_transaction_CreateTransactionSwaggerModel_send_source
+    ? CreateTransactionSwaggerModel_send_source
     : description: |-
         Source accounts and amounts for the transaction
         required: true
@@ -4714,10 +4714,10 @@ components:
             List of source operations
             required: true
           items:
-            $ref: '#/components/schemas/github_com_LerianStudio_midaz_v3_components_transaction_internal_adapters_postgres_transaction_CreateTransactionSwaggerModel_send_source_from'
+            $ref: '#/components/schemas/CreateTransactionSwaggerModel_send_source_from'
           type: array
       type: object
-    ? github_com_LerianStudio_midaz_v3_components_transaction_internal_adapters_postgres_transaction_CreateTransactionSwaggerModel_send
+    ? CreateTransactionSwaggerModel_send
     : description: |-
         Send operation details including source and distribution
         required: true
@@ -4731,7 +4731,7 @@ components:
         distribute:
           $ref: '#/components/schemas/CreateTransactionInflowSwaggerModel_send_distribute'
         source:
-          $ref: '#/components/schemas/github_com_LerianStudio_midaz_v3_components_transaction_internal_adapters_postgres_transaction_CreateTransactionSwaggerModel_send_source'
+          $ref: '#/components/schemas/CreateTransactionSwaggerModel_send_source'
         value:
           description: |-
             Transaction amount value in the smallest unit of the asset
