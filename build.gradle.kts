@@ -131,6 +131,12 @@ tasks.register<org.openapitools.generator.gradle.plugin.tasks.GenerateTask>("gen
 		"useSpringBoot3" to "true",
 		"additionalModelTypeAnnotations" to "@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)"
 	))
+	schemaMappings.set(mapOf(
+		"github_com_LerianStudio_midaz_v3_components_transaction_internal_adapters_postgres_transaction.CreateTransactionSwaggerModel" to "CreateTransactionSwaggerModel",
+		"github_com_LerianStudio_midaz_v3_components_transaction_internal_adapters_postgres_transaction_CreateTransactionSwaggerModel_send" to "CreateTransactionSwaggerModelSend",
+		"github_com_LerianStudio_midaz_v3_components_transaction_internal_adapters_postgres_transaction_CreateTransactionSwaggerModel_send_source" to "CreateTransactionSwaggerModelSendSource",
+		"github_com_LerianStudio_midaz_v3_components_transaction_internal_adapters_postgres_transaction_CreateTransactionSwaggerModel_send_source_from" to "CreateTransactionSwaggerModelSendSourceFrom"
+	))
 	globalProperties.set(mapOf("apiTests" to "false", "modelTests" to "false"))
 	doLast {
 		val generatedSourceDir = File("$rootDir/build/generated/midaz/transactions/src/main/kotlin")
