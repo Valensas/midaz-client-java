@@ -120,9 +120,34 @@ tasks.register<org.openapitools.generator.gradle.plugin.tasks.GenerateTask>("gen
 	}
 }
 
+tasks.register("renameSchemas") {
+	doLast {
+		val sourceYaml = file("$rootDir/src/main/resources/openapi-transactions.yaml")
+		val targetYaml = file("$buildDir/openapi-transactions-renamed.yaml")
+
+		var content = sourceYaml.readText()
+
+		val mappings = mapOf(
+			"github_com_LerianStudio_midaz_v3_components_transaction_internal_adapters_postgres_transaction.CreateTransactionSwaggerModel" to "CreateTransactionSwaggerModel",
+			"github_com_LerianStudio_midaz_v3_components_transaction_internal_adapters_postgres_transaction_CreateTransactionSwaggerModel_send" to "CreateTransactionSwaggerModelSend",
+			"github_com_LerianStudio_midaz_v3_components_transaction_internal_adapters_postgres_transaction_CreateTransactionSwaggerModel_send_source" to "CreateTransactionSwaggerModelSendSource",
+			"github_com_LerianStudio_midaz_v3_components_transaction_internal_adapters_postgres_transaction_CreateTransactionSwaggerModel_send_source_from" to "CreateTransactionSwaggerModelSendSourceFrom"
+		)
+
+		mappings.forEach { (oldName, newName) ->
+			content = content.replace(oldName, newName)
+		}
+
+		targetYaml.parentFile.mkdirs()
+		targetYaml.writeText(content)
+		println("Schema names updated successfully! Renamed YAML saved to: ${targetYaml.absolutePath}")
+	}
+}
+
 tasks.register<org.openapitools.generator.gradle.plugin.tasks.GenerateTask>("generateTransactionsApi") {
+	dependsOn("renameSchemas")
 	generatorName.set("kotlin")
-	inputSpec.set("$rootDir/src/main/resources/openapi-transactions.yaml")
+	inputSpec.set("$buildDir/openapi-transactions-renamed.yaml")
 	outputDir.set("$rootDir/build/generated/midaz/transactions")
 	packageName.set("com.valensas.midaz.client.transactions")
 	configOptions.set(mapOf(
@@ -130,12 +155,6 @@ tasks.register<org.openapitools.generator.gradle.plugin.tasks.GenerateTask>("gen
 		"serializationLibrary" to "jackson",
 		"useSpringBoot3" to "true",
 		"additionalModelTypeAnnotations" to "@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)"
-	))
-	schemaMappings.set(mapOf(
-		"github_com_LerianStudio_midaz_v3_components_transaction_internal_adapters_postgres_transaction.CreateTransactionSwaggerModel" to "CreateTransactionSwaggerModel",
-		"github_com_LerianStudio_midaz_v3_components_transaction_internal_adapters_postgres_transaction_CreateTransactionSwaggerModel_send" to "CreateTransactionSwaggerModelSend",
-		"github_com_LerianStudio_midaz_v3_components_transaction_internal_adapters_postgres_transaction_CreateTransactionSwaggerModel_send_source" to "CreateTransactionSwaggerModelSendSource",
-		"github_com_LerianStudio_midaz_v3_components_transaction_internal_adapters_postgres_transaction_CreateTransactionSwaggerModel_send_source_from" to "CreateTransactionSwaggerModelSendSourceFrom"
 	))
 	globalProperties.set(mapOf("apiTests" to "false", "modelTests" to "false"))
 	doLast {
