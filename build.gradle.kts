@@ -104,7 +104,8 @@ tasks.register<org.openapitools.generator.gradle.plugin.tasks.GenerateTask>("gen
 	configOptions.set(mapOf(
 		"library" to "jvm-spring-restclient",
 		"serializationLibrary" to "jackson",
-		"useSpringBoot3" to "true"
+		"useSpringBoot3" to "true",
+		"additionalModelTypeAnnotations" to "@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)"
 	))
 	globalProperties.set(mapOf("apiTests" to "false", "modelTests" to "false"))
 	doLast {
